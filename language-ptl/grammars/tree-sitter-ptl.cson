@@ -1,0 +1,32 @@
+name: 'PTL'
+scopeName: 'ptl'
+fileTypes: ['ptl']
+type: 'tree-sitter'
+parser: 'tree-sitter-ptl'
+
+scopes:
+  'source_file': 'source.ptl'
+  'source_file > preprocessor_definition': 'keyword.control.ptl'
+  'basic_identifier > boolean_identifier': 'language.constant.ptl'
+  'basic_identifier > number_identifier': 'language.constant.ptl'
+  'preprocessor_definition > preprocessor_name': 'string.quoted.double.ptl'
+  # 'preprocessor_definition > rvalue_statement': 'source.ptl'
+  'variable_invocation > rvalue_statement > basic_identifier > string_identifier': 'string.quoted.double.ptl'
+  # 'comment > anything': 'comment.line.double-slash.ptl'
+  # 'variable_invocation > variable_invoke_sym': 'constant.character.escape.ptl'
+  'variable_invocation > variable_invoke_sym': 'variable.other.member.ptl'
+  'section_identifier > string_identifier': 'constant.character.escape.ptl'
+  'function_invocation > string_identifier': 'variable.other.member.ptl'
+  'function_invocation > function_invocation_sym': 'variable.other.member.ptl'
+  'comment > anything': 'comment.line.double-slash.ptl'
+  'assignment > assign_sym': 'entity.name.function.ptl'
+  'comment > comment_symbol': 'comment.line.double-slash.ptl'
+
+comments:
+  start: '//'
+
+folds: [
+  {
+    type: 'section_identifier'
+  }
+]
